@@ -24,7 +24,7 @@ public class AuctionsController : ControllerBase
   {
     var auctions = await _context.Auctions
       .Include(x => x.Item)
-      .OrderBy(x => x.Item.Model)
+      .OrderBy(x => x.Item.Make)
       .ToListAsync();
 
     return _mapper.Map<List<AuctionDto>>(auctions);
