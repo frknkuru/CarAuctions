@@ -101,7 +101,7 @@ public class AuctionsController : ControllerBase
     if (auction == null) return NotFound();
 
     if (auction.Seller != User.Identity.Name) return Forbid();
-    
+
     _context.Auctions.Remove(auction);
 
     await _publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() });
@@ -109,8 +109,8 @@ public class AuctionsController : ControllerBase
     var result = await _context.SaveChangesAsync() > 0;
 
     if (!result) return BadRequest("Couldnt update DB");
-    return Ok();
 
+    return Ok();
   }
 
 }
