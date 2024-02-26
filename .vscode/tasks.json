@@ -1,0 +1,63 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "IdentityService",
+      "type": "shell",
+      "command": "dotnet watch",
+      "options": {
+        "cwd": "${workspaceFolder}/src/IdentityService"
+      },
+      "presentation": {
+        "group": "services"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "AuctionService",
+      "type": "shell",
+      "command": "dotnet watch",
+      "options": {
+        "cwd": "${workspaceFolder}/src/AuctionService"
+      },
+      "presentation": {
+        "group": "services"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "SearchService",
+      "type": "shell",
+      "command": "dotnet watch",
+      "options": {
+        "cwd": "${workspaceFolder}/src/SearchService"
+      },
+      "presentation": {
+        "group": "services"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "GatewayService",
+      "type": "shell",
+      "command": "dotnet watch",
+      "options": {
+        "cwd": "${workspaceFolder}/src/GatewayService"
+      },
+      "presentation": {
+        "group": "services"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start All Services",
+      "dependsOn": [
+        "IdentityService",
+        "AuctionService",
+        "SearchService",
+        "GatewayService"
+      ],
+      "dependsOrder": "parallel"
+    }
+  ]
+}
