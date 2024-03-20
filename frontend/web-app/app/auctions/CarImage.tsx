@@ -1,5 +1,5 @@
 'use client'
-import React, { use, useState } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 
 type Props = {
@@ -21,7 +21,7 @@ export default function CarImage({ imageUrl }: Props) {
       duration-700 
       ease-out'
       ${isLoading ? 'grayscale blur-2xl scale-110' : 'grayscale-0 blur-0 scale-100'}`}
-      onLoadingComplete={() => setLoading(false)}
+      onLoad={() => setLoading(false)}
     />
   )
 }
