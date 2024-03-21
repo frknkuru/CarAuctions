@@ -1,23 +1,25 @@
 'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useParamsStore } from '../hooks/useParamsStore'
 
 export default function Search() {
   const setParams = useParamsStore(state => state.setParams);
-  const [value, setValue] = useState('');
+  const setSearchValue = useParamsStore(state => state.setSearchValue);
+  const searchValue = useParamsStore(state => state.searchValue);
 
   function onChange(event: any) {
-    setValue(event.target.value);
+    setSearchValue(event.target.value);
   }
 
   function search() {
-    setParams({ searchTerm: value });
+    setParams({ searchTerm: searchValue });
   }
   return (
     <div className='flex w-[50%] items-center border-2 rounded-full py-2 shadow-sm'>
       <input
         type='text'
+        value={searchValue}
         placeholder='Search by make, model or color'
         onChange={onChange}
         onKeyDown={(e: any) => {
