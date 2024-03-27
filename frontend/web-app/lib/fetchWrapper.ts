@@ -25,7 +25,7 @@ async function post(url: string, body: {}) {
 async function put(url: string, body: {}) {
   const requestOptions = {
     method: "PUT",
-    // headers: await getHeaders(),
+    headers: await getHeaders(),
     body: JSON.stringify(body),
   };
   const response = await fetch(baseURL + url, requestOptions);
@@ -35,7 +35,7 @@ async function put(url: string, body: {}) {
 async function del(url: string) {
   const requestOptions = {
     method: "DELETE",
-    headers: await getHeaders(),
+    // headers: await getHeaders(),
   };
   const response = await fetch(baseURL + url, requestOptions);
   return await handleResponse(response);
