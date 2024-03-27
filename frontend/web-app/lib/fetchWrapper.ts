@@ -18,13 +18,14 @@ async function post(url: string, body: {}) {
     body: JSON.stringify(body),
   };
   const response = await fetch(baseURL + url, requestOptions);
+  console.log(baseURL + url);
   return await handleResponse(response);
 }
 
 async function put(url: string, body: {}) {
   const requestOptions = {
     method: "PUT",
-    headers: await getHeaders(),
+    // headers: await getHeaders(),
     body: JSON.stringify(body),
   };
   const response = await fetch(baseURL + url, requestOptions);
@@ -62,7 +63,7 @@ async function handleResponse(response: Response) {
       status: response.status,
       message: response.statusText,
     };
-    return error;
+    return { error };
   }
 }
 
