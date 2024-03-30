@@ -1,6 +1,4 @@
-﻿using System.Runtime.ConstrainedExecution;
-
-namespace Contracts;
+﻿namespace Contracts;
 
 public class BidPlaced
 {
