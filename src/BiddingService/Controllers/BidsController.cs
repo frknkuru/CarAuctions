@@ -1,6 +1,7 @@
-﻿using MassTransit.Serialization;
+﻿using AutoMapper;
+using Contracts;
+using MassTransit;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Entities;
 
@@ -10,9 +11,17 @@ namespace BiddingService;
 [Route("api/[controller]")]
 public class BidsController : ControllerBase
 {
+  private readonly IMapper _mapper;
+  private readonly IPublishEndpoint _publishEndpoint;
+
+  public BidsController(IMapper mapper, IPublishEndpoint publishEndpoint)
+  {
+    _mapper = mapper;
+    _publishEndpoint = publishEndpoint;
+  }
   [Authorize]
   [HttpPost]
-  public async Task<ActionResult<Bid>> PlaceBid(string auctionId, int amount)
+  public async Task<ActionResult<BidDto>> PlaceBid(string auctionId, int amount)
   {
     var auction = await DB.Find<Auction>().OneAsync(auctionId);
 
@@ -53,21 +62,21 @@ public class BidsController : ControllerBase
 
     await DB.SaveAsync(bid);
 
-    return Ok(bid);
+    Console.WriteLine(_mapper.Map<BidPlaced>(bid));
+    await _publishEndpoint.Publish(_mapper.Map<BidPlaced>(bid));
+
+
+    return Ok(_mapper.Map<BidDto>(bid));
   }
-  [HttpGet("auctionId")]
-  public async Task<ActionResult<List<Bid>>> GetBidsForAuction(string auctionId)
+
+  [HttpGet("{auctionId}")]
+  public async Task<ActionResult<List<BidDto>>> GetBidsForAuction(string auctionId)
   {
     var bids = await DB.Find<Bid>()
       .Match(b => b.AuctionId == auctionId)
       .Sort(b => b.Descending(x => x.BidTime))
       .ExecuteAsync();
-
-    if (bids == null || !bids.Any())
-    {
-      return NotFound("No bids found for this auction.");
-    }
-    return Ok(bids);
+    return bids.Select(_mapper.Map<BidDto>).ToList();
   }
 
 
