@@ -19,8 +19,7 @@ public class AuctionsController : ControllerBase
   private readonly IMapper _mapper;
   private readonly IPublishEndpoint _publishEndpoint;
 
-  public AuctionsController(IAuctionRepository repo, AuctionDbContext context, IMapper mapper,
-    IPublishEndpoint publishEndpoint)
+  public AuctionsController(IAuctionRepository repo, IMapper mapper, IPublishEndpoint publishEndpoint)
   {
     _repo = repo;
     _mapper = mapper;
