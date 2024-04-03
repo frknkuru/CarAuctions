@@ -21,13 +21,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A3C90917-E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionService.UnitTests", "test\AuctionService.UnitTests\AuctionService.UnitTests.csproj", "{C9A4D0FF-C2FC-4B46-A276-F26F7E0F3E78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionService.IntegrationTests", "test\AuctionService.IntegrationTests\AuctionService.IntegrationTests.csproj", "{34FBFC61-10E5-4560-90CA-6D70424AD863}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BA0C9718-72F8-47DE-A2B1-CDFC82BCDB9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -58,6 +57,13 @@ Global
 		{C9A4D0FF-C2FC-4B46-A276-F26F7E0F3E78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9A4D0FF-C2FC-4B46-A276-F26F7E0F3E78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9A4D0FF-C2FC-4B46-A276-F26F7E0F3E78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34FBFC61-10E5-4560-90CA-6D70424AD863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34FBFC61-10E5-4560-90CA-6D70424AD863}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34FBFC61-10E5-4560-90CA-6D70424AD863}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34FBFC61-10E5-4560-90CA-6D70424AD863}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BA0C9718-72F8-47DE-A2B1-CDFC82BCDB9D} = {1C9D26DB-F808-4B96-8E6B-0BA2B813EEB3}
@@ -67,5 +73,6 @@ Global
 		{2C1E67A6-851C-427D-8BA2-676ED81092A5} = {1C9D26DB-F808-4B96-8E6B-0BA2B813EEB3}
 		{2D2DD6A4-AE16-4F1A-8B95-52FFB0FBF864} = {1C9D26DB-F808-4B96-8E6B-0BA2B813EEB3}
 		{C9A4D0FF-C2FC-4B46-A276-F26F7E0F3E78} = {A3C90917-EBFF-4B55-9AF5-383D3F3EFC30}
+		{34FBFC61-10E5-4560-90CA-6D70424AD863} = {A3C90917-EBFF-4B55-9AF5-383D3F3EFC30}
 	EndGlobalSection
 EndGlobal
