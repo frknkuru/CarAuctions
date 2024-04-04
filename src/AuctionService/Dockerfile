@@ -12,6 +12,8 @@ COPY src/Contracts/Contracts.csproj src/Contracts/Contracts.csproj
 COPY src/IdentityService/IdentityService.csproj src/IdentityService/IdentityService.csproj
 COPY src/GatewayService/GatewayService.csproj src/GatewayService/GatewayService.csproj
 COPY src/BiddingService/BiddingService.csproj src/BiddingService/BiddingService.csproj
+COPY test/AuctionService.UnitTests/AuctionService.UnitTests.csproj test/AuctionService.UnitTests/AuctionService.UnitTests.csproj
+COPY test/AuctionService.IntegrationTests/AuctionService.IntegrationTests.csproj test/AuctionService.IntegrationTests/AuctionService.IntegrationTests.csproj
 
 # restore package deps
 RUN dotnet restore CarsAuction.sln

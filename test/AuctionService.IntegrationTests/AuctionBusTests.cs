@@ -9,11 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AuctionService.IntegrationTests;
 
-public class AuctionBusTests : IClassFixture<CustomWebAppFactory>, IAsyncLifetime
+[Collection("Shared collection")]
+public class AuctionBusTests : IAsyncLifetime
 {
   private readonly HttpClient _httpClient;
   private readonly CustomWebAppFactory _factory;
-  private ITestHarness _testHarness;
+  private readonly ITestHarness _testHarness;
 
   public AuctionBusTests(CustomWebAppFactory factory)
   {
@@ -46,7 +47,7 @@ public class AuctionBusTests : IClassFixture<CustomWebAppFactory>, IAsyncLifetim
     return Task.CompletedTask;
   }
 
-  private CreateAuctionDto GetAuctionForCreate()
+  private static CreateAuctionDto GetAuctionForCreate()
   {
     return new CreateAuctionDto
     {

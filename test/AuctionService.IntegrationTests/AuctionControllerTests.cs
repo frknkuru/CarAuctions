@@ -6,8 +6,8 @@ using AuctionService.DTOs;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AuctionService.IntegrationTests;
-
-public class AuctionControllerTests : IClassFixture<CustomWebAppFactory>, IAsyncLifetime
+[Collection("Shared collection")]
+public class AuctionControllerTests : IAsyncLifetime
 {
   private readonly CustomWebAppFactory _factory;
   private readonly HttpClient _httpClient;
@@ -154,7 +154,7 @@ public class AuctionControllerTests : IClassFixture<CustomWebAppFactory>, IAsync
 
     return Task.CompletedTask;
   }
-  private CreateAuctionDto GetAuctionForCreate()
+  private static CreateAuctionDto GetAuctionForCreate()
   {
     return new CreateAuctionDto
     {
@@ -167,9 +167,6 @@ public class AuctionControllerTests : IClassFixture<CustomWebAppFactory>, IAsync
       ReservePrice = 10
     };
   }
-
-
-
   #endregion
 
 }
