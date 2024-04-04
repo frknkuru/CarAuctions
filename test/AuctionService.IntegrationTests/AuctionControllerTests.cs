@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Http.Json;
 using AuctionService.Data;
 using AuctionService.DTOs;
-using AuctionService.Entities;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AuctionService.IntegrationTests;
@@ -100,6 +99,48 @@ public class AuctionControllerTests : IClassFixture<CustomWebAppFactory>, IAsync
     var createdAuction = await response.Content.ReadFromJsonAsync<AuctionDto>();
     Assert.Equal("bob", createdAuction.Seller);
   }
+  [Fact]
+  public async Task CreateAuction_WithInvalidCreateAuctionDto_ShouldReturn400()
+  {
+    // arrange
+    var auction = GetAuctionForCreate();
+    auction.Make = null;
+    _httpClient.SetFakeJwtBearerToken(AuthHelper.GetBearerForUser("bob"));
+
+    // act
+    var response = await _httpClient.PostAsJsonAsync("api/auctions", auction);
+
+    // assert
+    Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+  }
+
+  [Fact]
+  public async Task UpdateAuction_WithValidUpdateDtoAndUser_ShouldReturn200()
+  {
+    // arrange
+    var updateAuction = new UpdateAuctionDto { Make = " Updated" };
+    _httpClient.SetFakeJwtBearerToken(AuthHelper.GetBearerForUser("bob"));
+
+    // act
+    var response = await _httpClient.PutAsJsonAsync($"api/auctions/{GT_ID}", updateAuction);
+
+    // assert
+    Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+  }
+
+  [Fact]
+  public async Task UpdateAuction_WithValidUpdateDtoAndInvalidUser_ShouldReturn403()
+  {
+    // arrange
+    var updateAuction = new UpdateAuctionDto { Make = " Updated" };
+    _httpClient.SetFakeJwtBearerToken(AuthHelper.GetBearerForUser("notbob"));
+
+    // act
+    var response = await _httpClient.PutAsJsonAsync($"api/auctions/{GT_ID}", updateAuction);
+
+    // assert
+    Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+  }
   #endregion
 
 
@@ -126,6 +167,8 @@ public class AuctionControllerTests : IClassFixture<CustomWebAppFactory>, IAsync
       ReservePrice = 10
     };
   }
+
+
 
   #endregion
 
