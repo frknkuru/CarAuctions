@@ -30,13 +30,7 @@ export default function Search() {
           if (e.key === 'Enter') search()
         }}
         className='
-          flex-grow
-          pl-5
-          bg-transparent
-          focus:outline-none
-          border-transparent
-          focus:border-transparent
-          focus:ring-0
+          input-custom 
           text-sm
           text-gray-600'
       />

@@ -11,7 +11,6 @@ type Props = {
 
 export default function DeleteButton({ id }: Props) {
   const [loading, setLoading] = useState(false);
-  const [isShaking, setIsShaking] = useState(false);
   const router = useRouter();
 
   function doDelete() {
@@ -29,7 +28,7 @@ export default function DeleteButton({ id }: Props) {
     }, 380)
   }
   return (
-    <Button color='failure' isProcessing={loading} onClick={doDelete} className={isShaking ? 'shake' : ''}>
+    <Button color='failure' isProcessing={loading} onClick={doDelete} >
       Delete Auction
     </Button>
   )
