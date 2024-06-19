@@ -1,11 +1,11 @@
 import { Button, ButtonGroup } from 'flowbite-react';
-import React from 'react'
+import React from 'react';
 import { useParamsStore } from '../hooks/useParamsStore';
 import { AiOutlineClockCircle, AiOutlineSortAscending } from 'react-icons/ai';
 import { BsStopCircleFill, BsStopwatchFill } from 'react-icons/bs';
 import { GiFinishLine, GiFlame } from 'react-icons/gi';
 
-export const pageSizeButtons = [4, 8, 12]
+export const pageSizeButtons = [4, 8, 12];
 
 const orderButtons = [
   {
@@ -23,7 +23,7 @@ const orderButtons = [
     icon: BsStopCircleFill,
     value: 'new'
   },
-]
+];
 
 const filterButtons = [
   {
@@ -41,7 +41,8 @@ const filterButtons = [
     icon: BsStopwatchFill,
     value: 'finished'
   },
-]
+];
+
 export default function Filters() {
   const pageSize = useParamsStore(state => state.pageSize);
   const setParams = useParamsStore(state => state.setParams);
@@ -52,7 +53,7 @@ export default function Filters() {
     <div className='flex justify-between items-center mb-4'>
       <div>
         <span className='uppercase text-sm text-gray-500 mr-2'>Filter By</span>
-        <Button.Group>
+        <ButtonGroup>
           {filterButtons.map(({ label, icon: Icon, value }) => (
             <Button
               key={value}
@@ -63,11 +64,11 @@ export default function Filters() {
               {label}
             </Button>
           ))}
-        </Button.Group>
+        </ButtonGroup>
       </div>
       <div>
         <span className='uppercase text-sm text-gray-500 mr-2'>Order By</span>
-        <Button.Group>
+        <ButtonGroup>
           {orderButtons.map(({ label, icon: Icon, value }) => (
             <Button
               key={value}
@@ -78,7 +79,7 @@ export default function Filters() {
               {label}
             </Button>
           ))}
-        </Button.Group>
+        </ButtonGroup>
       </div>
       <div>
         <span className='uppercase text-sm text-gray-500 mr-2'>Page size</span>
@@ -98,4 +99,3 @@ export default function Filters() {
     </div>
   );
 }
-
