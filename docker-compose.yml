@@ -83,7 +83,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
       - ConnectionStrings__DefaultConnection=Server=postgres:5432;User Id=postgres;Password=secret;Database=IdentityDb
-      - ClientApp=http://app.carsauctions.com
+      - ClientApp=https://app.carsauctions.com
       - VIRTUAL_HOST=id.carsauctions.com
     depends_on:
       - postgres
@@ -98,7 +98,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
-      - ClientApp=http://app.carsauctions.com
+      - ClientApp=https://app.carsauctions.com
       - VIRTUAL_HOST=api.carsauctions.com
     networks:
       custom:

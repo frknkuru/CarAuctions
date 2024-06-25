@@ -2,10 +2,8 @@
 
 import { Bid } from '@/types';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr'
-import { User } from 'next-auth';
 import { ReactNode, useEffect, useState } from 'react'
 import { useAuctionStore } from '../hooks/useAuctionStore';
-import { useBidStore } from '../hooks/useBidStore';
 
 type Props = {
   children: ReactNode
@@ -14,16 +12,15 @@ type Props = {
 export default function SignalRProvider({ children }: Props) {
   const [connection, setConnection] = useState<HubConnection | null>(null);
   const setCurrentPrice = useAuctionStore(state => state.setCurrentPrice);
-  const addBid = useBidStore(state => state.addBid);
-
+  const apiUrl = process.env.NODE_ENV === 'production' ? 'https://api.carsauctions.com/notifications' : process.env.NEXT_PUBLIC_NOTIFY_URL
   useEffect(() => {
     const newConnection = new HubConnectionBuilder()
-      .withUrl(process.env.NEXT_PUBLIC_NOTIFY_URL!)
+      .withUrl(apiUrl!)
       .withAutomaticReconnect()
       .build();
 
     setConnection(newConnection);
-  }, []);
+  }, [apiUrl]);
 
   useEffect(() => {
     if (connection) {
